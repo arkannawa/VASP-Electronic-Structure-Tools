@@ -1,0 +1,48 @@
+SYSTEM  = TiB2_DOS
+LREAL   = .FALSE.    #Auto is recommended.
+ENCUT   = 500
+PREC    = Accurate   #Changes ENCUT, NGX, NGXF, and ROPT (if not specified).
+GGA     = PE         #Perdew-Burke-Ernzerhof (PBE) functional.
+
+# --- Ionic Control ---
+NSW     = 0         #Number of ionic steps (0 for Static calculation).
+IBRION  = -1        #1: Good geometry guess. 2: Bad guess (0 for Static calculation).
+#ISIF   = 3         #Disabled for static run.
+EDIFFG =-0.01       #<0: Stop relaxation if forces less than abs value.
+#POTIM  = 0.1       #Scaling factor for relaxation.
+
+# --- Electronic Minimization & Convergence ---
+NELMIN  = 5          #4 to 6 for good geometry guesses.
+NELM    = 100        #Maximum number of electronic steps.
+EDIFF   = 1E-6       #1E-2 for bad geom guess, 1E-6 for good guess.
+ALGO    = Normal     #V: Sets IALGO=48 (RMM-DIIS).
+NWRITE  = 1          #How much will be written to the file OUTCAR.
+ICHARG  = 11         #IMPORTANT: 11 means read CHGCAR for non-self-consistent DOS run.
+
+# --- Smearing ---
+ISMEAR  = -5          #Methfessel-Paxton smearing, use 1 (or 2) to relax.
+SIGMA   = 0.05        #.2 is good for transition metals.
+
+# --- Van der Waals Correction ---
+#IVDW    = 11         #Grimme's DFT-D3 dispersion correction
+
+# --- Parallelization & Performance ---
+NCORE   = 8          #Number of cores per band.
+#NPAR   = 1          #Number of band groups.
+
+# --- Mixing Parameters ---
+#AMIX     = 0.2
+#BMIX     = 0.00001
+#AMIX_MAG = 0.8
+#BMIX_MAG = 0.00001
+
+# --- Output Control ---
+LWAVE    =.FALSE.   #WAVECAR.
+LAECHG   =.FALSE.   #AECAR for charge calcs.
+LVTOT    =.FALSE.   #LOCPOT for workfunction.
+LCHARG   =.FALSE.   #CHG and CHGCAR.
+LORBIT   = 11       #DOSCAR and PROCAR for DOS, Also need NPAR=1, 11 outputs DOSCAR and PROCAR with orbital decomposition (s,p,d).
+NEDOS    = 2000     #Increases DOS points to 2000 for high-resolution curves.
+
+
+
