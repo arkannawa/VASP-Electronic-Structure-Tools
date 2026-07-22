@@ -9,14 +9,25 @@ This guide explains how to extract and plot Density of States (DOS) from VASP ou
 ```text
 Project/
 └── DOS/
-    ├── DOSCAR
+    ├── INCAR
     ├── POSCAR
-    ├── INCAR (must contain LORBIT)
-    └── (after VASPkit runs)
-        ├── TDOS.dat
-        ├── PDOS_Ti.dat
-        ├── PDOS_B.dat
-        └── ...
+    ├── KPOINTS
+    ├── TDOS.dat
+    ├── PDOS_Ti.dat
+    ├── PDOS_B.dat
+    ├── ITDOS.dat
+    ├── IPDOS_Ti.dat
+    ├── IPDOS_B.dat
+    ├── plot_all_dos.py
+    ├── README.md
+    └── plots/
+        ├── TDOS.png / .pdf
+        ├── PDOS_Ti.png / .pdf
+        ├── PDOS_B.png / .pdf
+        ├── IPDOS_Ti.png / .pdf
+        ├── IPDOS_B.png / .pdf
+        ├── ITDOS.png / .pdf
+        └── DOS_Master_Summary.png / .pdf
 ```
 
 ---
@@ -25,7 +36,12 @@ Project/
 
 * Python 3.8+ with `numpy` and `matplotlib`
 * VASPkit installed
-* VASP calculation with `LORBIT = 11` or `12` in INCAR
+* VASP calculation with `LORBIT = 11` or `12` in `INCAR`
+
+> **Note on POTCAR**: Generate the combined `POTCAR` from your local pseudopotential library using:
+> ```bash
+> cat path/to/Ti-sv/POTCAR path/to/B/POTCAR > POTCAR
+> ```
 
 ---
 
@@ -41,27 +57,27 @@ Project/
    vaspkit
    ```
 
-3. **Select the DOS menu**: type `11` and press Enter.
+3. **Select DOS Menu**: Type `11` and press Enter.
 
-4. **Extract total DOS**: type `111` – this creates `TDOS.dat`.
+4. **Extract Total DOS**: Type `111` – generates `TDOS.dat`.
 
-5. **Extract element-resolved PDOS**: type `113` – then enter the element indices (e.g., `1-2` for Ti and B).
-   This creates `PDOS_Ti.dat`, `PDOS_B.dat`, etc.
+5. **Extract Partial DOS (PDOS)**: Type `113` – enter atom indices (e.g., `1-2` for Ti and B) to generate `PDOS_Ti.dat`, `PDOS_B.dat`, etc.
 
 ---
 
 ## 🖥️ Plotting with the Python Script
 
-1. Copy the script `plot_all_dos.py` into the DOS folder.
-2. Run the script:
+1. Run the script:
    ```bash
    python3 plot_all_dos.py
    ```
 
-**Output files:**
-* `TDOS.png` / `.pdf`
-* `PDOS_*.png` / `.pdf` (one per element)
-* `DOS_Master_Summary.png` / `.pdf` – combined plot with all curves.
+2. All generated plots and vector PDFs will be organized inside the `plots/` directory.
+
+**Outputs Summary:**
+* `TDOS.png` / `.pdf`: Total Density of States.
+* `PDOS_*.png` / `.pdf`: Partial Density of States for each element.
+* `DOS_Master_Summary.png` / `.pdf`: Combined Master plot featuring all orbital/element contributions.
 
 ---
 
@@ -70,7 +86,7 @@ Project/
 ```python
 PLOT_DPI = 600                  # PNG resolution
 SAVE_PDF = True                 # save vector PDFs
-ENERGY_RANGE = [-10.0, 10.0]    # x-axis range (eV)
+ENERGY_RANGE = [-10.0, 10.0]    # x-axis energy range (eV)
 APPLY_ATOMIC_SCALING = False    # keep False for VASPkit 113 output
 ```
 
