@@ -2,6 +2,8 @@
 
 Automated post-processing and visualization tools for VASP electronic structure calculations, generating customizable, publication-ready DOS and Band Structure figures from VASPkit outputs in high-resolution PNG and vector PDF formats.
 
+![Combined Band Structure and DOS Preview](./BAND_DOS/Band_DOS_Combined.png)
+
 ---
 
 ## 📁 Guides & Modules
@@ -31,5 +33,5 @@ Automated post-processing and visualization tools for VASP electronic structure 
 
 ---
 
-*Tested on $\text{TiB}_2$*  
+*Tested on TiB₂*  
 *Distributed under the MIT License.*
