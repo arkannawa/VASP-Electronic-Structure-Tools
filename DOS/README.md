@@ -6,6 +6,7 @@ This guide explains how to extract and plot Density of States (DOS) from VASP ou
 
 ## 📁 Folder Structure
 
+```text
 Project/
 └── DOS/
     ├── DOSCAR
