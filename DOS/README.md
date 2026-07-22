@@ -6,7 +6,6 @@ This guide explains how to extract and plot Density of States (DOS) from VASP ou
 
 ## 📁 Folder Structure
 
-```text
 Project/
 └── DOS/
     ├── DOSCAR
@@ -18,45 +17,54 @@ Project/
         ├── PDOS_B.dat
         └── ...
 
-🛠️ Prerequisites
-Python 3.8+ with numpy and matplotlib
+---
 
-VASPkit installed
+## 🛠️ Prerequisites
 
-VASP calculation with LORBIT = 11 or 12 in INCAR
+* Python 3.8+ with numpy and matplotlib
+* VASPkit installed
+* VASP calculation with LORBIT = 11 or 12 in INCAR
 
-📝 Step-by-Step Extraction with VASPkit
-Navigate to your DOS folder:
-cd DOS
+---
 
-Launch VASPkit:
-vaspkit
-Select the DOS menu: type 11 and press Enter.
+## 📝 Step-by-Step Extraction with VASPkit
 
-Extract total DOS: type 111 – this creates TDOS.dat.
+1. Navigate to your DOS folder:
+   cd DOS
 
-Extract element-resolved PDOS: type 113 – then enter the element indices (e.g., 1-2 for Ti and B).
-This creates PDOS_Ti.dat, PDOS_B.dat, etc.
-🖥️ Plotting with the Python Script
-Copy the script plot_all_dos.py into the DOS folder.
+2. Launch VASPkit:
+   vaspkit
 
-Run the script:
-python3 plot_all_dos.py
+3. Select the DOS menu: type 11 and press Enter.
+
+4. Extract total DOS: type 111 – this creates TDOS.dat.
+
+5. Extract element-resolved PDOS: type 113 – then enter the element indices.
+
+---
+
+## 🖥️ Plotting with the Python Script
+
+1. Copy the script plot_all_dos.py into the DOS folder.
+2. Run the script:
+   python3 plot_all_dos.py
 
 Output files:
+* TDOS.png / .pdf
+* PDOS_*.png / .pdf (one per element)
+* DOS_Master_Summary.png / .pdf – combined plot with all curves.
 
-TDOS.png / .pdf
+---
 
-PDOS_*.png / .pdf (one per element)
+## ⚙️ Script Settings
 
-DOS_Master_Summary.png / .pdf – combined plot with all curves.
+* PLOT_DPI = 600 (PNG resolution)
+* SAVE_PDF = True (save vector PDFs)
+* ENERGY_RANGE = [-10.0, 10.0] (x-axis range in eV)
+* APPLY_ATOMIC_SCALING = False (keep False for VASPkit 113 output)
 
-⚙️ Script Settings (adjustable at the top)
-PLOT_DPI = 600                  # PNG resolution
-SAVE_PDF = True                 # save vector PDFs
-ENERGY_RANGE = [-10.0, 10.0]    # x-axis range (eV)
-APPLY_ATOMIC_SCALING = False    # keep False for VASPkit 113 output
+---
 
-📚 References
+## 📚 References
 * [VASPkit Documentation](https://vaspkit.com)
 * [VASP Manual](https://www.vasp.at/wiki/index.php/The_VASP_Manual)
