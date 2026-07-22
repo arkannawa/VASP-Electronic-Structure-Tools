@@ -17,52 +17,62 @@ Project/
         ├── PDOS_Ti.dat
         ├── PDOS_B.dat
         └── ...
+```
 
 ---
 
 ## 🛠️ Prerequisites
 
-* Python 3.8+ with numpy and matplotlib
+* Python 3.8+ with `numpy` and `matplotlib`
 * VASPkit installed
-* VASP calculation with LORBIT = 11 or 12 in INCAR
+* VASP calculation with `LORBIT = 11` or `12` in INCAR
 
 ---
 
 ## 📝 Step-by-Step Extraction with VASPkit
 
-1. Navigate to your DOS folder:
+1. **Navigate to your DOS folder**:
+   ```bash
    cd DOS
+   ```
 
-2. Launch VASPkit:
+2. **Launch VASPkit**:
+   ```bash
    vaspkit
+   ```
 
-3. Select the DOS menu: type 11 and press Enter.
+3. **Select the DOS menu**: type `11` and press Enter.
 
-4. Extract total DOS: type 111 – this creates TDOS.dat.
+4. **Extract total DOS**: type `111` – this creates `TDOS.dat`.
 
-5. Extract element-resolved PDOS: type 113 – then enter the element indices.
+5. **Extract element-resolved PDOS**: type `113` – then enter the element indices (e.g., `1-2` for Ti and B).
+   This creates `PDOS_Ti.dat`, `PDOS_B.dat`, etc.
 
 ---
 
 ## 🖥️ Plotting with the Python Script
 
-1. Copy the script plot_all_dos.py into the DOS folder.
+1. Copy the script `plot_all_dos.py` into the DOS folder.
 2. Run the script:
+   ```bash
    python3 plot_all_dos.py
+   ```
 
-Output files:
-* TDOS.png / .pdf
-* PDOS_*.png / .pdf (one per element)
-* DOS_Master_Summary.png / .pdf – combined plot with all curves.
+**Output files:**
+* `TDOS.png` / `.pdf`
+* `PDOS_*.png` / `.pdf` (one per element)
+* `DOS_Master_Summary.png` / `.pdf` – combined plot with all curves.
 
 ---
 
-## ⚙️ Script Settings
+## ⚙️ Script Settings (adjustable at top of plot_all_dos.py)
 
-* PLOT_DPI = 600 (PNG resolution)
-* SAVE_PDF = True (save vector PDFs)
-* ENERGY_RANGE = [-10.0, 10.0] (x-axis range in eV)
-* APPLY_ATOMIC_SCALING = False (keep False for VASPkit 113 output)
+```python
+PLOT_DPI = 600                  # PNG resolution
+SAVE_PDF = True                 # save vector PDFs
+ENERGY_RANGE = [-10.0, 10.0]    # x-axis range (eV)
+APPLY_ATOMIC_SCALING = False    # keep False for VASPkit 113 output
+```
 
 ---
 
